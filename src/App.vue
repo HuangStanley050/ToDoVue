@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <Header />
-    <AddTodo />
+    <AddTodo @add-todo="addTodo" />
     <ToDos @del-todo="completeTodo" :todos="todos" />
   </div>
 </template>
@@ -17,6 +17,9 @@ export default {
     completeTodo(id) {
       //console.log("APP received the id", id);
       this.todos = this.todos.filter(item => item.id !== id);
+    },
+    addTodo(todo) {
+      this.todos = [...this.todos, todo];
     }
   },
   data() {
