@@ -11,8 +11,14 @@
 import ToDos from "./components/ToDos.vue";
 import Header from "./components/layouts/Header.vue";
 import AddTodo from "./components/AddTodo.vue";
+import axios from "axios";
 export default {
   name: "app",
+  async created() {
+    let result = await axios.get("https://jsonplaceholder.typicode.com/todos");
+    this.todos = result.data;
+    //console.log(result.data);
+  },
   methods: {
     completeTodo(id) {
       //console.log("APP received the id", id);
@@ -24,23 +30,7 @@ export default {
   },
   data() {
     return {
-      todos: [
-        {
-          id: 1,
-          title: "Todo 1",
-          completed: false
-        },
-        {
-          id: 2,
-          title: "Todo 2",
-          completed: true
-        },
-        {
-          id: 3,
-          title: "Todo 3",
-          completed: false
-        }
-      ]
+      todos: []
     };
   },
 
